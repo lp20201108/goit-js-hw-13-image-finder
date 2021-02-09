@@ -1,4 +1,5 @@
   
+  
 import imageCard from "../templates/imageCard.hbs";
 import refs from './refs.js';
 
@@ -48,7 +49,7 @@ function searchImgHandler(event) {
 
 refs.loadBtn.addEventListener('click', loadMore);
 function loadMore(event) {
+        page+= 1;
     fetchAPI(input)
-      page+= 1;
+  
 }
-
