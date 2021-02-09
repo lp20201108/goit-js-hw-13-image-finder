@@ -1,11 +1,7 @@
-  
-import imageCard from "../templates/imageCard.hbs";
-import refs from './refs.js';
-
 const KEY = '20207250-3e42ced94c2caff6bd60b0b02';
 const baseUrl = "https://pixabay.com/api/";
-
-let page = 1;
+input{}
+page: 1;
 let input = '';
 
 export default function fetchAPI(searchQuery) {
@@ -25,30 +21,3 @@ export default function fetchAPI(searchQuery) {
     })
     .catch(err => console.log(err));
 }
-
-
-
-function appendMarkup(data) {
-    let image= imageCard(data.hits); 
-    refs.gallery.insertAdjacentHTML('beforeend',image); 
-};
-
-
-refs.form.addEventListener('submit', searchImgHandler);
-
-function searchImgHandler(event) {
-    event.preventDefault();
-  refs.gallery.innerHTML = "";
- input = event.target[0].value;
-    // console.log(input);
-    fetchAPI(input);
-  
-}
-
-
-refs.loadBtn.addEventListener('click', loadMore);
-function loadMore(event) {
-    fetchAPI(input)
-      page+= 1;
-}
-
