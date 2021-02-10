@@ -26,25 +26,30 @@ export default {
         // console.log(data);
 
         if (searchQuery.length === 0) {
-            return error({
+          return error({
             text: 'Nice try, but we still need you to enter a word!',
-            delay: 2000,  });
-       }
-        else if(!data.hits.length){
-                 return error({
+            delay: 2000,
+          });
+        }
+        else if (!data.hits.length) {
+          return error({
             text: 'Wrong query!Please, try again!',
-            delay: 2000,  });
-        } else if (data.hits.length<=12 && data.hits.length > 0) {
-           error({
-            text: 'That is all! Enter next query',
-            delay: 2000,  });
+            delay: 2000,
+          });
+        } else if (data.hits.length < 12 && data.hits.length > 0) {
+          error({
+            text: 'These are all the images! Enter next query',
+            delay: 2000,
+          });
+        } else {
+            refs.loadBtn.classList.remove('is-hidden');
         }
-        else {
-           refs.loadBtn.classList.remove('is-hidden');
-        }
+      
+       
         appendMarkup(data);
 
            
+
         window.scrollTo({
           top: window.scrollY + window.innerHeight,
           // top: document.documentElement.offsetHeight,
