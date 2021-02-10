@@ -58,8 +58,11 @@ export default {
 
  
 function openModal(event) {
-  
-  if (event.target.nodeName === 'IMG') {
+
+
+    if (event.target.nodeName !== 'IMG') {
+    return;
+  } else {
     let imgUrl = event.target.getAttribute('data-largeImg');
       // console.log(imgUrl);
      const instance = basicLightbox.create(
