@@ -4,7 +4,9 @@ import '@pnotify/core/dist/PNotify.css';
 import { error } from '@pnotify/core';
 import refs from './refs.js';
 import appendMarkup from './markup.js';
-import '../../node_modules/basiclightbox/dist/basicLightbox.min.css';
+
+import * as basicLightbox from 'basiclightbox';
+import  '../../node_modules/basiclightbox/dist/basicLightbox.min.css';
 // import infiniteScroll from '../../node_modules/infinite-scroll/dist/infinite-scroll.pkgd.js';
 
 // console.log(infiniteScroll);
@@ -46,8 +48,7 @@ export default {
           behavior: "smooth",
         });
 
-       refs.gallery.addEventListener('click', openModal);
-       
+        refs.gallery.addEventListener('click', openModal);       
          
       })
       .catch(err => console.log(err));
@@ -57,14 +58,13 @@ export default {
 
  
 function openModal(event) {
+  
   if (event.target.nodeName === 'IMG') {
-    // console.log(e.target);
-    const instance = basicLightbox.create(
-      `
-		<img width="1200" height="900" src="${event.target.dataset.large}">
-	`,
-    );
-
-    instance.show();
-  }
+    let imgUrl = event.target.getAttribute('data-largeImg');
+      // console.log(imgUrl);
+     const instance = basicLightbox.create(
+      `<img  src="${imgUrl}" width="1200" height="900">`);
+    //  console.log(event.target);
+ instance.show();   
+  }  
 }
