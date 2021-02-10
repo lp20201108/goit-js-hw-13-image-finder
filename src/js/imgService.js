@@ -20,19 +20,18 @@ export default {
       .then(data => {
         console.log(data.hits.length);
         // console.log(data);
-        if (data.hits.length) {
-         refs.loadBtn.classList.remove('is-hidden');
-        } else {
-          refs.loadBtn.classList.add('is-hidden');
-          error({
+
+        if (!data.hits.length) {
+                 return error({
             text: 'Please, try again!',
-            delay: 1000,
-          });
+            delay: 1000,  });
+        } else {
+           refs.loadBtn.classList.remove('is-hidden');
         }
         appendMarkup(data);
 
      refs.loadBtn.classList.remove('is-hidden');
-       
+     
            
         window.scrollTo({
           top: window.scrollY + window.innerHeight,
@@ -40,13 +39,25 @@ export default {
           behavior: "smooth",
         });
 
-    
+       refs.gallery.addEventListener('click', openModal);
        
          
       })
       .catch(err => console.log(err));
   },
-
+  
 };
 
  
+function openModal(event) {
+  if (event.target.nodeName === 'IMG') {
+    // console.log(e.target);
+    const instance = basicLightbox.create(
+      `
+		<img width="1200" height="900" src="${event.target.dataset.large}">
+	`,
+    );
+
+    instance.show();
+  }
+}
