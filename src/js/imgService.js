@@ -1,7 +1,8 @@
 import '@pnotify/core/dist/BrightTheme.css';
-import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
-import { error } from '@pnotify/core';
+import '@pnotify/core/dist/Material.css';
+import { defaults } from '@pnotify/core';
+import {notice, success, error, defaultModules, Notice, ModuleEntry} from '@pnotify/core';
 import refs from './refs.js';
 import appendMarkup from './markup.js';
 
@@ -26,10 +27,11 @@ export default {
         // console.log(data);
 
         if (searchQuery.length === 0) {
-         error({
-            text: 'Nice try, but we still need you to enter a word!',
-            delay: 2000,
-         });
+            notice({
+  title: 'NICE TRY!',
+  text: ' But we still need you to enter a word. In English, please :)',
+  delay: 2000
+});
             return
         }
         else if (!data.hits.length) {
@@ -38,10 +40,12 @@ export default {
             delay: 2000,
           });
         } else if (data.hits.length < 12 && data.hits.length > 0) {
-          error({
-            text: 'These are all the images! Enter next query',
-            delay: 2000,
+          success({
+          title: 'Awesome!',
+          text: 'These are all the images we have found! Enter next query.',
+         delay: Infinity
           });
+
             refs.loadBtn.classList.add('is-hidden');
         } else {
 
