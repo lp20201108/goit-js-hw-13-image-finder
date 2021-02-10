@@ -26,10 +26,11 @@ export default {
         // console.log(data);
 
         if (searchQuery.length === 0) {
-          return error({
+         error({
             text: 'Nice try, but we still need you to enter a word!',
             delay: 2000,
-          });
+         });
+            return
         }
         else if (!data.hits.length) {
           return error({
@@ -41,7 +42,9 @@ export default {
             text: 'These are all the images! Enter next query',
             delay: 2000,
           });
+            refs.loadBtn.classList.add('is-hidden');
         } else {
+
             refs.loadBtn.classList.remove('is-hidden');
         }
       
