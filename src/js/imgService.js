@@ -23,7 +23,7 @@ export default {
         console.log(data.hits.length);
         // console.log(data);
 
-        if (!data.hits.length) {
+        if (!data.hits.length || searchQuery.length ===0) {
                  return error({
             text: 'Wrong query!Please, try again!',
             delay: 1000,  });
