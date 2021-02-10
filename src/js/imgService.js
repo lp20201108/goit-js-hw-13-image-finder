@@ -23,7 +23,12 @@ export default {
         console.log(data.hits.length);
         // console.log(data);
 
-        if (!data.hits.length || searchQuery.length ===0) {
+        if (searchQuery.length === 0) {
+            return error({
+            text: 'Nice try, but we still need you to enter a word!',
+            delay: 2000,  });
+       }
+        else if(!data.hits.length){
                  return error({
             text: 'Wrong query!Please, try again!',
             delay: 1000,  });
