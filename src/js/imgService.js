@@ -5,7 +5,9 @@ import { error } from '@pnotify/core';
 import refs from './refs.js';
 import appendMarkup from './markup.js';
 import '../../node_modules/basiclightbox/dist/basicLightbox.min.css';
+// import infiniteScroll from '../../node_modules/infinite-scroll/dist/infinite-scroll.pkgd.js';
 
+// console.log(infiniteScroll);
 
 const KEY = '20207250-3e42ced94c2caff6bd60b0b02';
 const baseUrl = "https://pixabay.com/api/";
@@ -23,7 +25,7 @@ export default {
 
         if (!data.hits.length) {
                  return error({
-            text: 'Please, try again!',
+            text: 'Wrong query!Please, try again!',
             delay: 1000,  });
         } else {
            refs.loadBtn.classList.remove('is-hidden');
