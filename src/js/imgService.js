@@ -2,7 +2,7 @@ import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/Material.css';
 import { defaults } from '@pnotify/core';
-import {notice, success, error, defaultModules, Notice, ModuleEntry} from '@pnotify/core';
+import {notice, success, error, defaultModules, Notice, PNotifyAnimate,PNotifyConfirm} from '@pnotify/core';
 import refs from './refs.js';
 import appendMarkup from './markup.js';
 
@@ -25,14 +25,14 @@ export default {
       .then(data => {
         console.log(data.hits.length);
         // console.log(data);
-
+// 
         if (searchQuery.length === 0) {
-            notice({
-  title: 'NICE TRY!',
-  text: ' But we still need you to enter a word. In English, please :)',
-  delay: 2000
-});
-            return
+       notice({
+            title: 'NICE TRY!',
+            text: ' But we still need you to enter a word. In English, please :)',
+            delay: 2000
+          });
+         return
         }
         else if (!data.hits.length) {
           return error({
@@ -42,7 +42,7 @@ export default {
         } else if (data.hits.length < 12 && data.hits.length > 0) {
           success({
           title: 'Awesome!',
-          text: 'These are all the images we have found! Enter next query.',
+          text: 'These are all the results! Go ahead! Enter next query.',
          delay: Infinity
           });
 
