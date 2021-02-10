@@ -8,7 +8,7 @@ import appendMarkup from './markup.js';
 import * as basicLightbox from 'basiclightbox';
 import  '../../node_modules/basiclightbox/dist/basicLightbox.min.css';
 // import infiniteScroll from '../../node_modules/infinite-scroll/dist/infinite-scroll.pkgd.js';
-
+// // import InfiniteScroll from 'infinite-scroll';
 // console.log(infiniteScroll);
 
 const KEY = '20207250-3e42ced94c2caff6bd60b0b02';
@@ -33,14 +33,17 @@ export default {
         else if(!data.hits.length){
                  return error({
             text: 'Wrong query!Please, try again!',
-            delay: 1000,  });
-        } else {
+            delay: 2000,  });
+        } else if (data.hits.length<=12 && data.hits.length > 0) {
+           error({
+            text: 'That is all! Enter next query',
+            delay: 2000,  });
+        }
+        else {
            refs.loadBtn.classList.remove('is-hidden');
         }
         appendMarkup(data);
 
-     refs.loadBtn.classList.remove('is-hidden');
-     
            
         window.scrollTo({
           top: window.scrollY + window.innerHeight,
@@ -68,6 +71,6 @@ function openModal(event) {
      const instance = basicLightbox.create(
       `<img  src="${imgUrl}" width="1200" height="900">`);
     //  console.log(event.target);
- instance.show();   
+    instance.show();   
   }  
 }
