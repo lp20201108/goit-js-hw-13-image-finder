@@ -33,7 +33,7 @@ export default {
 
      refs.loadBtn.classList.remove('is-hidden');
        
-     
+           
         window.scrollTo({
           top: window.scrollY + window.innerHeight,
           // top: document.documentElement.offsetHeight,
